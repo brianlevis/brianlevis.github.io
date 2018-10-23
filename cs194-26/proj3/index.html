@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <head>
+        <title>Fun with Derek and Nutmeg</title>
+        <style>body { font-family: 'Open Sans', sans-serif; }</style>
+    </head>
+    <body>
+        <h1>CS 194-26 Project #3: Fun with Frequencies and Gradients!</h1>
+        <img src="res/squirbo_61a.gif" align="middle" height="500px"/>
+        <h3>Overview</h3>
+        <p>
+            The purpose of this project was to explore different approaches to image blending.
+        </p>
+        <h2>Part 1: Frequency Domain</h2>
+        <h3>Part 1.1: Warmup</h3>
+        <p>Here is a cat picture I captured on holiday.</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/blurry_catto.jpg" align="middle" height="500px"/>
+                        <figcaption align="middle">original catto (fuzzy)</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/sharp_catto.jpg" align="middle" height="500px"/>
+                        <figcaption align="middle">sharpened catto</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h3>Part 1.2: Hybrid Images</h3>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/derek.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">original derek (not nutmeg)</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/nutmeg.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">original nutmeg (not derek)</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/nutmeg_derek.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">united</figcaption>
+                    </td>
+                </tr>
+            </table>
+             <table>
+                <tr>
+                    <td>
+                        <img src="res/oski2_oski1.jpg" align="middle" height="350px"/>
+                        <figcaption align="middle">a familiar face</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/hiss_reptile.jpg" align="middle" height="350px"/>
+                        <figcaption align="middle">a lizard that looks like a bearded dragon</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>Watch out! You can't blend just any old Derek and Nutmeg!</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/random_derek.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">random derek</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/random_nutmeg.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">random nutmeg</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/random_nutmeg_random_derek.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">this is less than ideal</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>The correct Derek and Nutmeg in the frequency domain:</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/fourier.jpg" align="middle" height="300px"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h3>Part 1.3: Gaussian and Laplacian Stacks</h3>
+        <p>Lincoln and Gala, and Mona Lisa decomposed:</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/lincoln.jpg" align="middle" height="300px"/>
+                    </td>
+                    <td>
+                        <img src="res/lincoln_display.jpg" align="middle" height="300px"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="res/lisa.jpg" align="middle" height="348px"/>
+                    </td>
+                    <td>
+                        <img src="res/lisa_display.jpg" align="middle" height="348px"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>Additional examples:</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/oski1.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="res/oski1_display.jpg" align="middle" height="200px"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/oski2.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="res/oski2_display.jpg" align="middle" height="200px"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h3>Part 1.4: Multiresolution Blending</h3>
+        <p>In this section, each laplacian layer is blended at a different intensity, with the help of a gaussian masking stack. One failure case is combining faces of different skin tones.</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/apple.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">apple</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/orange.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">orange</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/oraple_lite.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">lighter blending</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/oraple_moar.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">stronger blending</figcaption>
+                    </td>
+                  </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/leader.jpg" align="middle" height="450px"/>
+                        <figcaption align="middle">democratic leaders</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/turnip.jpg" align="middle" height="450px"/>
+                        <figcaption align="middle">a happy potato that never asked to become a yam</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h2>Part 2: Gradient Domain Fushion</h2>
+        <p>In these examples, the goal is to transplant an object from one background to another. The object is masked by hand, and adjusted such that it blends into the new background. The adjusted object is computed to minimize the difference in gradient from the original object, and to minimize the difference from border pixels. This often results in a shift of hue.</p>
+        <h3>Part 2.1: Toy Problem</h3>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/toy.png" align="middle" height="250px"/>
+                        <figcaption align="middle">original woody</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/toy_output.png" align="middle" height="250px"/>
+                        <figcaption align="middle">woody reconstructed from gradient</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h3>Part 2.2: Poisson Blending</h3>
+        <p>When we try to add parrot friends to the whale shark's house, they appear too dark because the hue of the addition image is shifted to merge the sky and water. The overall effect improves slightly when the sky is made darker, but the blend is not smooth.</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/bird.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">bird friends</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/aqua.png" align="middle" height="250px"/>
+                        <figcaption align="middle">whale shark and humans</figcaption>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/bird_aqua_bad.png" align="middle" height="250px"/>
+                        <figcaption align="middle">mask to blend</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/darkbird_bad.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">adjusted mask</figcaption>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="res/bird_aqua.png" align="middle" height="250px"/>
+                        <figcaption align="middle">blending</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/darkbird.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">blending</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>Here are some images that worked a little bit better:</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/slimer.png" align="middle" height="300px"/>
+                        <figcaption align="middle">spooky ghost</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/slime_in_da_club.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">spooky ghost in faculty hall</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/squirrel2.jpg" align="middle" height="350px"/>
+                        <figcaption align="middle">a squirbo in berkeley</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/squirbo61a.jpg" align="middle" height="350px"/>
+                        <figcaption align="middle">now he has way too many students</figcaption>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/sauron.jpg" align="middle" height="350px"/>
+                        <figcaption align="middle">gorthaur the cruel</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/sauron_berkeley.jpg" align="middle" height="350px"/>
+                        <figcaption align="middle">a nice day in mordor</figcaption>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/turtle.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">nice turtle</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/pool.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">hearst pool with different colored water</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/turtle_at_hearst.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">nice turtle in hearst pool</figcaption>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/penguin.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">sample penguin</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/ski.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">sample slope</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/ski_penguin.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">penguin on slope</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>A comparison of techniques:</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/apple.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">original apple</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/orange.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">original orange</figcaption>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <img src="res/oraple_average.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">simple average</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/apple_orange.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">hybrid aporange</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/orange_apple.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">hybrid oraple</figcaption>
+                    </td>
+                </tr>
+                <tr> 
+                    <td>
+                        <img src="res/oraple_moar.jpg" align="middle" height="300px"/>
+                        <figcaption align="middle">using stacks and a mask</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/oraple2_bad.png" align="middle" height="300px"/>
+                        <figcaption align="middle">poisson blending mask</figcaption>
+                    </td>
+                    <td>
+                        <img src="res/oraple2.png" align="middle" height="300px"/>
+                        <figcaption align="middle">poisson blending</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105387166-2"></script>
+        <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config','UA-105387166-2');</script>
+    </body>
+</html>

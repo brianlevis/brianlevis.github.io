@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <head>
+        <title>Face Morphing</title>
+        <style>body { font-family: 'Open Sans', sans-serif; }</style>
+    </head>
+    <body>
+        <h1>CS 194-26 Project #4: Face Morphing</h1>
+        <img src="https://brianlevis.com/cs194-26/proj4/res/brian.gif" align="middle" height="500px"/>
+        <h3>Overview</h3>
+        <p>
+            The purpose of this project was to explore the image blending via correspondence points.
+        </p>
+        <h2>Morphing</h2>
+        <p>I took two pictures of myself, and defined a set of 60 corresponding points. I used the midpoints to create a triangularization, the result of which is shown below.</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/brian0.jpg" align="middle" height="400px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/brian1.jpg" align="middle" height="400px"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/annotated0.jpg" align="middle" height="400px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/annotated1.jpg" align="middle" height="400px"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>For each triangle of each frame, I compute the affine transformation matrices to map included points to the source images. Point shift and crossfade progress linearly.</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/annotated0.jpg" align="middle" height="400px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/annotated1.jpg" align="middle" height="400px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/annotated2.jpg" align="middle" height="400px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/annotated.gif" align="middle" height="400px"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>Final product: 675x900, 45 frames. The execution of this un-optimized code is proportional to the product of width, height, frames, and correspondence points. Each frame took a few minutes to compute, but multiprocessing made computation very manageable.</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/brian.gif" align="middle" height="550px"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h3>Additional Results</h3>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/leah_erasmo.gif" align="middle" height="550px"/>
+                        <figcaption align="middle">my friend morphing into her pet dog</figcaption>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/blue_meanie.gif" align="middle" height="550px"/>
+                        <figcaption align="middle">blue meanie >:O</figcaption>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/andrew.gif" align="middle" height="550px"/>
+                        <figcaption align="middle">my friend has turned into a poster</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h3>🎺 🎺 🎺 Musical Video 🎺 🎺 🎺</h3>
+        <div align="middle">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/vDuX7mz5sIs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <h2>Population Average</h2>
+        <p>The following images were created using this dataset of Danish computer scientists: M. B. Stegmann, B. K. Ersboll, and R. Larsen. FAME - a flexible appearance modelling environment. IEEE Trans. on Medical Imaging, 22(10):1319-1331, 2003.</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <figcaption align="middle">sample image</figcaption>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/sample1.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <figcaption align="middle">average image</figcaption>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/average1.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <figcaption align="middle">average face</figcaption>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averageface1.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <figcaption align="middle">sample warped to average</figcaption>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/warped1.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <figcaption align="middle">me warped to average</figcaption>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/brianwarp1.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <figcaption align="middle">average warped to me</figcaption>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averagewarp1.jpg" align="middle" height="200px"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/sample2.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/average2.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averageface2.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/warped2.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/brianwarp2.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averagewarp2.jpg" align="middle" height="200px"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/sample3.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/average3.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averageface3.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/warped3.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/brianwarp3.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averagewarp3.jpg" align="middle" height="200px"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/sample4.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/average4.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averageface4.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/warped4.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/brianwarp4.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averagewarp4.jpg" align="middle" height="200px"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/sample5.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/average5.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averageface5.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/warped5.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/brianwarp5.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averagewarp5.jpg" align="middle" height="200px"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/sample6.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/average6.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averageface6.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/warped6.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/brianwarp6.jpg" align="middle" height="200px"/>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/averagewarp6.jpg" align="middle" height="200px"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h3>Caricature</h3>
+        <p>This was created by subtracting a multiple of the difference between my own face and the mean of the first face type from above.</p>
+        <div align="middle">
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/caricature0.2.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">distortion: 0.2</figcaption>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/caricature0.5.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">distortion: 0.5</figcaption>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/caricature1.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">distortion: 1</figcaption>
+                    </td>
+                    <td>
+                        <img src="https://brianlevis.com/cs194-26/proj4/res/caricature2.jpg" align="middle" height="250px"/>
+                        <figcaption align="middle">distortion: 2</figcaption>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105387166-2"></script>
+        <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config','UA-105387166-2');</script>
+    </body>
+</html>
