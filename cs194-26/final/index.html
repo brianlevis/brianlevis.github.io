@@ -21,7 +21,7 @@
         <p><a href="http://www.abedavis.com/files/papers/VisualRhythm_Davis18.pdf">This paper</a> from Abe Davis aims to accomplish a similar task. I found that my results looked a little better when I implemented the match-candidate detection from this paper, accounting for pitch changes and directional motion. This paper additionally creates tempograms to locally align audio and video rhythms, and has some <a href="http://abedavis.com/visualbeat/">pretty neat results.</a></p>
         <div align="middle">
             <iframe width=1708 height=480 src="https://drive.google.com/file/d/1W_dVXmfuHDTkFpOdbJv6vrlcpZ0uDO4E/preview"></iframe>
-            <p>The Wiggles show off their flashy car to the instrumental of REDMERCEDES.</p>
+            <p>The Wiggles show off their flashy car to the instrumental of REDMERCEDES. The left video is modified, while the right video is original.</p>
         </div>
         <h3>Dimensionality Reduction for Music</h3>
         <p>Compute the spectogram (complex, time-valued FFT) of the mono-audio signal. The spectral flux between time steps indicates change in both pitch and volume. Sum the positive frequency values across their axis to get a vector of beat-onset envelopes.</p>
@@ -30,7 +30,7 @@
                 <tr>
                     <td>
                         <img src="https://brianlevis.com/cs194-26/final/res/audio_signal.png" align="middle" height="550px"/>
-                        <figcaption align="middle">audio signal from above, with match points</figcaption>
+                        <figcaption align="middle">audio signal from above</figcaption>
                     </td>
                 </tr>
                 <tr>
@@ -59,7 +59,7 @@
                 <tr>
                     <td>
                         <img src="https://brianlevis.com/cs194-26/final/res/video_signal.png" align="middle" height="550px"/>
-                        <figcaption align="middle">video signal from above, with match points</figcaption>
+                        <figcaption align="middle">video signal from above</figcaption>
                     </td>
                 </tr>
                 <tr>
